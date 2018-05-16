@@ -14,13 +14,13 @@ public class Graph : MonoBehaviour {
         
         position.z = 0f;
         for (int i = 0; i < resolution; i++ ){
-
             Transform point = Instantiate(pointPrefab);
             //  point.localPosition = Vector3.right *((i + 0.5f) /5f - 1f);
             position.x = (i + 0.5f) * step - 1f;
-            position.y = position.x * position.x;//THIS IS FUNCTION
+            position.y = position.x * position.x * position.x;//THIS IS FUNCTION
             point.localPosition = position;
             point.localScale = scale;
+            point.SetParent(transform, false);
         }
 
 
