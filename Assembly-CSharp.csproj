@@ -10,7 +10,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{7D666CC6-BD4C-3C51-B92D-2B1610C6D049}</ProjectGuid>
+    <ProjectGuid>{8F8A4E7A-91C3-D30A-395D-AE7C14E0622E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -62,10 +62,10 @@
     <Compile Include="Assets\Graph.cs" />
     <None Include="Assets\ColoredPoint.shader" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/Acer/Documents/GitHub/Graph-Unity-/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/Acer/Documents/GitHub/Mathematical-Surfaces-Graph-Unity-/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/Acer/Documents/GitHub/Graph-Unity-/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/Acer/Documents/GitHub/Mathematical-Surfaces-Graph-Unity-/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
