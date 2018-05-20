@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//Mathematical 3-D figures C# script.
+//Most of formulas are referred from https://catlikecoding.com/unity/tutorials/basics/mathematical-surfaces/
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
