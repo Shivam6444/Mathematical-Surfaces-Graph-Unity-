@@ -8,6 +8,7 @@ public enum GraphFunctionName{
     Sine2D,
     MultiSine2D,
     Ripple,
-    Cylinder
+    Cylinder,
+    Sphere
 
 }

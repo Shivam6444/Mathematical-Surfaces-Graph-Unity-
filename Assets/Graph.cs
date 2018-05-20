@@ -11,10 +11,10 @@ public class Graph : MonoBehaviour {
     Transform[] points;
     [Range(10,100)]public int resolution = 10;
     public GraphFunctionName function;
-    static GraphFunction[] functions = { SineFunction, MultiSineFunction, Sine2DFunction, MultiSine2DFunction, Ripple, Cylinder};
+    static GraphFunction[] functions = { SineFunction, MultiSineFunction, Sine2DFunction, MultiSine2DFunction,
+        Ripple, Cylinder, Sphere};
  
     public void Awake(){
-
         points = new Transform[resolution * resolution];//Just like instansiation of points object.
         float step = 2f / resolution; //Calculation of step according to current resolution.
         Vector3 scale = Vector3.one * step;
@@ -95,9 +95,20 @@ public class Graph : MonoBehaviour {
 
     static Vector3 Cylinder(float u, float v, float t){
         Vector3 p;
-        p.x = Mathf.Sin(pi * u);
-        p.y = 0f;
-        p.z = Mathf.Cos(pi * u);
+        float r = 0.8f + Mathf.Sin(pi * (6f * u + 2f * v + t)) * 0.2f;
+        p.x = r * Mathf.Sin(pi * u);
+        p.y = v;
+        p.z = r * Mathf.Cos(pi * u);
+        return p;
+    }
+    static Vector3 Sphere(float u, float v, float t){
+        Vector3 p;
+        float r = 0.8f + Mathf.Sin(pi * (6f * u + t)) * 0.1f;
+        r += Mathf.Sin(pi * (4f * v + t)) * 0.1f;
+        float s = r * Mathf.Cos(pi * 0.5f * v);
+        p.x = s * Mathf.Sin(pi * u);
+        p.y = r * Mathf.Sin(pi * 0.5f * v); ;
+        p.z = s * Mathf.Cos(pi * u);
         return p;
     }
 }
