@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Graph : MonoBehaviour {
-    
+    public delegate float GraphFunction(float x, float t);
     public Transform pointPrefab;
     Transform[] points;
     [Range(10,100)]public int resolution = 10;
-    [Range(0 - 1)] public int function;
-    //Range- the slider in inspector.
+    public GraphFunctionName function;
+    static GraphFunction[] functions = { SineFunction, MultiSineFunction };
+ 
     public void Awake(){
+
         points = new Transform[resolution];//Just like instansiation of points object.
         float step = 2f / resolution; //Calculation of step according to current resolution.
         Vector3 scale = Vector3.one * step;
@@ -27,17 +29,13 @@ public class Graph : MonoBehaviour {
     }
 
     void Update(){
+        GraphFunction f = functions[(int)function];
+  
         float t = Time.time;//Getting the value of time.
         for(int i = 0; i < points.Length; i++){
             Transform point = points[i];
             Vector3 position = point.localPosition;
-            if(function == 0){
-                position.y = SineFunction(position.x, t);
-            }
-            else {
-                position.y = MultiSineFunction(position.x, t);
-
-            }
+            position.y = f(position.x, t);
             //position.y = MultiSineFunction(position.x,t);//This is our function.
             point.localPosition = position;
         }
