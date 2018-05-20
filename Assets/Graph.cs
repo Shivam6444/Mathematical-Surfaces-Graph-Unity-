@@ -6,12 +6,12 @@ public class Graph : MonoBehaviour {
 
     const float pi = Mathf.PI;
     public delegate Vector3 GraphFunction(float u, float v, float t);
-    public delegate float GraphFunction(float x, float z, float t);
+  
     public Transform pointPrefab;
     Transform[] points;
     [Range(10,100)]public int resolution = 10;
     public GraphFunctionName function;
-    static GraphFunction[] functions = { SineFunction, MultiSineFunction, Sine2DFunction, MultiSine2DFunction, Ripple};
+    static GraphFunction[] functions = { SineFunction, MultiSineFunction, Sine2DFunction, MultiSine2DFunction, Ripple, Cylinder};
  
     public void Awake(){
 
@@ -33,7 +33,7 @@ public class Graph : MonoBehaviour {
         GraphFunction f = functions[(int)function];
         float t = Time.time;//Getting the value of time from Time Class.
         float step = 2f / resolution;
-        for(int i = 0, z =0; z < resolution; z++){
+        for (int i = 0, z = 0; z < resolution; z++){
             float v = (z + 0.5f) * step - 1f;
             for (int x = 0; x < resolution; x++, i++){
                 float u = (x + 0.5f) * step - 1f;
@@ -42,19 +42,22 @@ public class Graph : MonoBehaviour {
         }
     }
 
+
     static Vector3 Ripple(float x, float z, float t){
         Vector3 p;
         float d = Mathf.Sqrt(x * x + z * z);
         p.x = x;
-        p.y = Mathf.Sin(pi *(4f * d -t));
+        p.y = Mathf.Sin(pi * (4f * d - t));
         p.y /= 1f + 10f * d;
         p.z = z;
         return p;
     }
+
+
     static Vector3 MultiSine2DFunction(float x, float z, float t){
         Vector3 p;
         p.x = x;
-        p.y = 4f * Mathf.Sin(pi * (x + z + t * 0.5f));
+        p.y = 4f * Mathf.Sin(pi * (x + z + t / 2f));
         p.y += Mathf.Sin(pi * (x + t));
         p.y += Mathf.Sin(2f * pi * (z + 2f * t)) * 0.5f;
         p.y *= 1f / 5.5f;
@@ -66,7 +69,7 @@ public class Graph : MonoBehaviour {
         Vector3 p;
         p.x = x;
         p.y = Mathf.Sin(pi * (x + t));
-        p.y+= Mathf.Sin(pi * (z + t));
+        p.y += Mathf.Sin(pi * (z + t));
         p.y *= 0.5f;
         p.z = z;
         return p;
@@ -84,9 +87,17 @@ public class Graph : MonoBehaviour {
         Vector3 p;
         p.x = x;
         p.y = Mathf.Sin(pi * (x + t));
-        p.y += Mathf.Sin(2f * pi * (x + 2f* t));
+        p.y += Mathf.Sin(2f * pi * (x + 2f * t)) / 2f;
         p.y *= 2f / 3f;
         p.z = z;
+        return p;
+    }
+
+    static Vector3 Cylinder(float u, float v, float t){
+        Vector3 p;
+        p.x = Mathf.Sin(pi * u);
+        p.y = 0f;
+        p.z = Mathf.Cos(pi * u);
         return p;
     }
 }
