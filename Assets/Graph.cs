@@ -10,7 +10,7 @@ public class Graph : MonoBehaviour {
     Transform[] points;
     [Range(10,100)]public int resolution = 10;
     public GraphFunctionName function;
-    static GraphFunction[] functions = { SineFunction, MultiSineFunction, Sine2DFunction, MultiSine2DFunction};
+    static GraphFunction[] functions = { SineFunction, MultiSineFunction, Sine2DFunction, MultiSine2DFunction, Ripple};
  
     public void Awake(){
 
@@ -46,6 +46,13 @@ public class Graph : MonoBehaviour {
             //position.y = MultiSineFunction(position.x,t);//This is our function.
             point.localPosition = position;
         }
+    }
+
+    static float Ripple(float x, float z, float t){
+        float d = Mathf.Sqrt(x * x + z * z);
+        float y = Mathf.Sin(pi *(4f * d -t));
+        y /= 1f + 10f * d;
+        return y;
     }
     static float MultiSine2DFunction(float x, float z, float t){
         float y = 4f * Mathf.Sin(pi * (x + z + t * 0.5f));
